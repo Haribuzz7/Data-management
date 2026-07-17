@@ -1,15 +1,12 @@
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
-import { Sprout, Mail, Lock } from 'lucide-react'
+import { Sprout } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
-import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 
 export default function Auth() {
   const { session, signIn } = useAuth()
   const location = useLocation()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
 
@@ -19,20 +16,16 @@ export default function Auth() {
     return <Navigate to={from} replace />
   }
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
+  const handleTapLogin = async () => {
     setError(null)
     setSubmitting(true)
 
-    const { error } = await signIn(email, password)
+    // Hardcoded convenience login for mom
+    const { error } = await signIn('siva@1970.com', 'Saisiva1970')
 
     setSubmitting(false)
     if (error) {
-      setError(
-        error.toLowerCase().includes('invalid login credentials')
-          ? 'Incorrect email or password.'
-          : error
-      )
+      setError(error)
     }
   }
 
@@ -46,38 +39,17 @@ export default function Auth() {
         <p className="text-sm text-ink-muted mt-1">ICAR, Gobichettipalayam</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <Input
-          type="email"
-          label="Email"
-          placeholder="you@example.com"
-          icon={<Mail size={18} />}
-          autoComplete="username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <Input
-          type="password"
-          label="Password"
-          placeholder="••••••••"
-          icon={<Lock size={18} />}
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
+      <div className="flex flex-col gap-4">
         {error && (
-          <p role="alert" className="text-sm text-danger -mt-1">
+          <p role="alert" className="text-sm text-center text-danger mb-2">
             {error}
           </p>
         )}
 
-        <Button type="submit" size="lg" fullWidth loading={submitting} className="mt-2">
-          Sign in
+        <Button onClick={handleTapLogin} size="lg" fullWidth loading={submitting}>
+          Tap to Access Field Log
         </Button>
-      </form>
+      </div>
     </div>
   )
 }
