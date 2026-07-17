@@ -9,6 +9,14 @@ import './index.css'
 
 import App from './App'
 
+// Forcefully unregister any existing service workers to fix offline caching bugs
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    for (const registration of registrations) {
+      registration.unregister()
+    }
+  })
+}
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
