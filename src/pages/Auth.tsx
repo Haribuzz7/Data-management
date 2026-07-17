@@ -31,7 +31,7 @@ export default function Auth() {
   return (
     <div className="min-h-dvh flex flex-col justify-center px-6 py-8 max-w-sm mx-auto w-full relative z-10 animate-in fade-in duration-500">
       <div className="flex flex-col items-center mb-10 text-center slide-in-from-bottom duration-700 delay-150 fill-mode-both">
-        <div className="w-24 h-24 rounded-full bg-white/40 shadow-card flex items-center justify-center mb-6 backdrop-blur-xl border border-white/60">
+        <div className="w-24 h-24 rounded-full bg-surface shadow-card flex items-center justify-center mb-6 backdrop-blur-xl border border-line">
           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent/80 to-accent text-white flex items-center justify-center text-3xl font-medium shadow-inner">
             MS
           </div>
@@ -49,9 +49,9 @@ export default function Auth() {
           </div>
         )}
 
-        <div className="bg-white/40 backdrop-blur-xl border border-white/60 p-2 rounded-[1.25rem] shadow-raised">
+        <div className="bg-surface backdrop-blur-xl border border-line p-2 rounded-[1.25rem] shadow-raised">
           <Button onClick={handleTapLogin} size="lg" fullWidth loading={submitting} className="shadow-sm hover:shadow-md transition-shadow">
-            Tap to Access Field Log
+            Tap to Access Data Management
           </Button>
         </div>
       </div>

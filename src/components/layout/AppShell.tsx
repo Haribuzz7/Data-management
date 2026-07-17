@@ -17,8 +17,16 @@ export default function AppShell() {
       {/* Desktop Sidebar (hidden on mobile) */}
       <nav className="hidden md:flex flex-col w-64 border-r border-line bg-surface/80 backdrop-blur-md p-6 fixed inset-y-0 left-0 z-40">
         <div className="mb-10 px-4">
-          <h1 className="text-xl font-bold tracking-tight text-ink">Field Log</h1>
-          <p className="text-xs text-ink-muted mt-1">ICAR Activity Tracker</p>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent/80 to-accent text-white flex items-center justify-center text-sm font-medium shadow-inner">
+              MS
+            </div>
+            <div>
+              <h1 className="text-base font-semibold tracking-tight text-ink leading-tight">Mrs. M. Siva</h1>
+              <p className="text-xs text-ink-muted">Scientist</p>
+            </div>
+          </div>
+          <p className="text-[11px] text-ink-faint font-medium uppercase tracking-widest mt-4">Data Management</p>
         </div>
         
         <ul className="flex flex-col gap-2">
@@ -73,7 +81,7 @@ export default function AppShell() {
 
       {/* Mobile Bottom Nav (hidden on desktop) */}
       <nav
-        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/60 backdrop-blur-xl border-t border-white/60
+        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-surface backdrop-blur-xl border-t border-line
                    px-2 pt-1 pb-[calc(0.5rem+env(safe-area-inset-bottom))]"
       >
         <ul className="flex justify-around">

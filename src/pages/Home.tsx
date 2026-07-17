@@ -42,7 +42,7 @@ export default function Home() {
         <button
           onClick={signOut}
           aria-label="Sign out"
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/40 backdrop-blur-md border border-white/60 text-ink-muted shadow-sm active:scale-95 transition-transform"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-surface backdrop-blur-md border border-line text-ink-muted shadow-sm hover:bg-surface-raised active:scale-95 transition-all"
         >
           <LogOut size={18} />
         </button>
@@ -51,7 +51,7 @@ export default function Home() {
       <div className="animate-in slide-in-from-bottom duration-700 delay-150 fill-mode-both">
         <Link
           to="/search"
-          className="flex items-center gap-2 bg-white/50 backdrop-blur-xl border border-white/60 rounded-pill px-4 py-3 mb-6 shadow-card hover:bg-white/60 transition-colors"
+          className="flex items-center gap-2 bg-surface backdrop-blur-xl border border-line rounded-pill px-4 py-3 mb-6 shadow-card hover:bg-surface-raised transition-colors"
         >
           <Search size={18} className="text-ink-muted" />
           <span className="text-ink-muted text-sm font-medium">Search activities, tags…</span>
@@ -66,7 +66,7 @@ export default function Home() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="bg-white/50 backdrop-blur-xl rounded-card border border-white/60 px-2 py-3 text-center shadow-card"
+              className="bg-surface backdrop-blur-xl rounded-card border border-line px-2 py-3 text-center shadow-card hover:bg-surface-raised transition-colors"
             >
               <p className="text-xl font-semibold font-mono text-accent">{stat.value}</p>
               <p className="text-[11px] text-ink-muted font-medium leading-tight mt-0.5">{stat.label}</p>
