@@ -28,50 +28,60 @@ export default function Home() {
   const stats = computeStats(items)
 
   return (
-    <div className="px-4 pt-[calc(1rem+env(safe-area-inset-top))] pb-8 max-w-2xl mx-auto">
-      <header className="mb-5 flex items-start justify-between">
-        <div>
-          <p className="text-sm text-ink-muted">{headerDate()}</p>
-          <h1 className="text-2xl font-semibold tracking-tight">Field Log</h1>
+    <div className="px-4 pt-[calc(1.5rem+env(safe-area-inset-top))] pb-8 max-w-2xl mx-auto animate-in fade-in duration-500">
+      <header className="mb-6 flex items-start justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent/80 to-accent text-white flex items-center justify-center text-lg font-medium shadow-inner">
+            MS
+          </div>
+          <div>
+            <h1 className="text-xl font-semibold tracking-tight text-ink leading-tight">Mrs. M. Siva</h1>
+            <p className="text-sm text-ink-muted">Scientist, Home science</p>
+          </div>
         </div>
         <button
           onClick={signOut}
           aria-label="Sign out"
-          className="w-11 h-11 flex items-center justify-center rounded-full text-ink-faint active:bg-canvas"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/40 backdrop-blur-md border border-white/60 text-ink-muted shadow-sm active:scale-95 transition-transform"
         >
-          <LogOut size={20} />
+          <LogOut size={18} />
         </button>
       </header>
 
-      <Link
-        to="/search"
-        className="flex items-center gap-2 bg-surface border border-line rounded-pill px-4 py-3 mb-6 shadow-card"
-      >
-        <Search size={18} className="text-ink-faint" />
-        <span className="text-ink-faint text-sm">Search activities, tags, locations…</span>
-      </Link>
+      <div className="animate-in slide-in-from-bottom duration-700 delay-150 fill-mode-both">
+        <Link
+          to="/search"
+          className="flex items-center gap-2 bg-white/50 backdrop-blur-xl border border-white/60 rounded-pill px-4 py-3 mb-6 shadow-card hover:bg-white/60 transition-colors"
+        >
+          <Search size={18} className="text-ink-muted" />
+          <span className="text-ink-muted text-sm font-medium">Search activities, tags…</span>
+        </Link>
 
-      <div className="grid grid-cols-4 gap-2 mb-8">
-        {[
-          { label: 'Today', value: stats.today },
-          { label: 'This week', value: stats.thisWeek },
-          { label: 'This month', value: stats.thisMonth },
-          { label: 'Total', value: stats.total },
-        ].map((stat) => (
-          <div
-            key={stat.label}
-            className="bg-surface rounded-card border border-line px-2 py-3 text-center shadow-card"
-          >
-            <p className="text-lg font-semibold font-mono">{stat.value}</p>
-            <p className="text-[11px] text-ink-muted leading-tight mt-0.5">{stat.label}</p>
-          </div>
-        ))}
+        <div className="grid grid-cols-4 gap-2 mb-8">
+          {[
+            { label: 'Today', value: stats.today },
+            { label: 'This week', value: stats.thisWeek },
+            { label: 'This month', value: stats.thisMonth },
+            { label: 'Total', value: stats.total },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className="bg-white/50 backdrop-blur-xl rounded-card border border-white/60 px-2 py-3 text-center shadow-card"
+            >
+              <p className="text-xl font-semibold font-mono text-accent">{stat.value}</p>
+              <p className="text-[11px] text-ink-muted font-medium leading-tight mt-0.5">{stat.label}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <section className="mb-8">
-        <h2 className="text-sm font-semibold text-ink-muted uppercase tracking-wide mb-3">
-          Today's Activities
-        </h2>
+      <section className="mb-8 animate-in slide-in-from-bottom duration-700 delay-300 fill-mode-both">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-bold text-ink-muted uppercase tracking-wider">
+            Today's Activities
+          </h2>
+          <span className="text-xs font-medium text-ink-faint">{headerDate()}</span>
+        </div>
         {isLoading ? (
           <SkeletonList count={2} />
         ) : todayItems.length > 0 ? (

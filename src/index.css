@@ -5,19 +5,19 @@
      Color system — warm, quiet, one signature accent (field green).
      Kept intentionally small: every screen should be built from these.
   --------------------------------------------------------------------- */
-  --color-canvas: #FAFAF7;        /* app background */
-  --color-surface: #FFFFFF;       /* cards */
-  --color-surface-raised: #FFFFFF;
+  --color-canvas: #FAFAF7;        /* app background fallback */
+  --color-surface: rgba(255, 255, 255, 0.65);       /* translucent glass */
+  --color-surface-raised: rgba(255, 255, 255, 0.85);
 
   --color-ink: #1C1C1E;           /* primary text */
-  --color-ink-muted: #6B6B70;     /* secondary text */
-  --color-ink-faint: #A6A6AA;     /* placeholder / disabled */
+  --color-ink-muted: #4A4A4D;     /* secondary text, darkened for premium contrast */
+  --color-ink-faint: #8E8E93;     /* placeholder / disabled */
 
-  --color-line: #E8E7E2;          /* hairline borders on warm canvas */
+  --color-line: rgba(45, 106, 79, 0.1); /* hairline borders tinted green */
 
   --color-accent: #2D6A4F;        /* field green — signature color, use sparingly */
-  --color-accent-soft: #E6EFE9;   /* accent tint for chips/badges */
-  --color-accent-pressed: #234F3C;
+  --color-accent-soft: rgba(45, 106, 79, 0.1);   /* accent tint for chips/badges */
+  --color-accent-pressed: #1B4332;
 
   --color-warn: #B45309;          /* pending sync / offline state */
   --color-danger: #C0362C;        /* delete / errors */
@@ -34,20 +34,20 @@
   --color-cat-other: #8E8E93;
 
   /* ---------------------------------------------------------------------
-     Type — Inter throughout. Clean, excellent Android rendering, free.
+     Type — Outfit throughout. Premium geometric sans.
   --------------------------------------------------------------------- */
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "Inter", ui-monospace, monospace; /* tabular numerals for date stamps */
+  --font-sans: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Outfit", ui-monospace, monospace;
 
   /* ---------------------------------------------------------------------
      Radii & shadow — soft, rounded-2xl card language throughout.
   --------------------------------------------------------------------- */
-  --radius-card: 1.25rem;
-  --radius-control: 0.875rem;
+  --radius-card: 1.5rem;
+  --radius-control: 1rem;
   --radius-pill: 999px;
 
-  --shadow-card: 0 1px 2px rgba(28, 28, 30, 0.04), 0 4px 16px rgba(28, 28, 30, 0.06);
-  --shadow-raised: 0 4px 24px rgba(28, 28, 30, 0.10);
+  --shadow-card: 0 4px 20px -2px rgba(45, 106, 79, 0.08), 0 0 3px rgba(45, 106, 79, 0.03);
+  --shadow-raised: 0 10px 40px -4px rgba(45, 106, 79, 0.12), 0 4px 12px rgba(45, 106, 79, 0.05);
 }
 
 @layer base {
@@ -56,12 +56,19 @@
   }
 
   body {
-    background-color: var(--color-canvas);
+    background-color: #FAFAF7;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(204, 237, 219, 0.6) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(246, 240, 222, 0.6) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(214, 234, 222, 0.6) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(238, 245, 230, 0.6) 0px, transparent 50%);
+    background-attachment: fixed;
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-feature-settings: "tnum" 1; /* tabular numerals for dates/stats */
     -webkit-font-smoothing: antialiased;
     overscroll-behavior-y: none; /* no rubber-band on mobile shell */
+    min-height: 100vh;
   }
 
   /* Touch targets: minimum 44px per Apple HIG, enforced globally on

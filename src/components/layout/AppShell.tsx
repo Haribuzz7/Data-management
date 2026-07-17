@@ -13,7 +13,7 @@ export default function AppShell() {
   const { isOnline, pendingCount, errorCount, syncNow } = useOfflineSync()
 
   return (
-    <div className="min-h-dvh flex bg-canvas">
+    <div className="min-h-dvh flex bg-transparent relative">
       {/* Desktop Sidebar (hidden on mobile) */}
       <nav className="hidden md:flex flex-col w-64 border-r border-line bg-surface/80 backdrop-blur-md p-6 fixed inset-y-0 left-0 z-40">
         <div className="mb-10 px-4">
@@ -73,7 +73,7 @@ export default function AppShell() {
 
       {/* Mobile Bottom Nav (hidden on desktop) */}
       <nav
-        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-surface/90 backdrop-blur-lg border-t border-line
+        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/60 backdrop-blur-xl border-t border-white/60
                    px-2 pt-1 pb-[calc(0.5rem+env(safe-area-inset-bottom))]"
       >
         <ul className="flex justify-around">
