@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---------------------------------------------------------------------
+     Color system — warm, quiet, one signature accent (field green).
+     Kept intentionally small: every screen should be built from these.
+  --------------------------------------------------------------------- */
+  --color-canvas: #FAFAF7;        /* app background */
+  --color-surface: #FFFFFF;       /* cards */
+  --color-surface-raised: #FFFFFF;
+
+  --color-ink: #1C1C1E;           /* primary text */
+  --color-ink-muted: #6B6B70;     /* secondary text */
+  --color-ink-faint: #A6A6AA;     /* placeholder / disabled */
+
+  --color-line: #E8E7E2;          /* hairline borders on warm canvas */
+
+  --color-accent: #2D6A4F;        /* field green — signature color, use sparingly */
+  --color-accent-soft: #E6EFE9;   /* accent tint for chips/badges */
+  --color-accent-pressed: #234F3C;
+
+  --color-warn: #B45309;          /* pending sync / offline state */
+  --color-danger: #C0362C;        /* delete / errors */
+
+  /* Category accent palette (mirrors default categories in schema.sql) */
+  --color-cat-farm: #34C759;
+  --color-cat-inspection: #007AFF;
+  --color-cat-meeting: #5856D6;
+  --color-cat-research: #AF52DE;
+  --color-cat-farmer: #FF9500;
+  --color-cat-demo: #FF3B30;
+  --color-cat-awareness: #00C7BE;
+  --color-cat-training: #32ADE6;
+  --color-cat-other: #8E8E93;
+
+  /* ---------------------------------------------------------------------
+     Type — Inter throughout. Clean, excellent Android rendering, free.
+  --------------------------------------------------------------------- */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Inter", ui-monospace, monospace; /* tabular numerals for date stamps */
+
+  /* ---------------------------------------------------------------------
+     Radii & shadow — soft, rounded-2xl card language throughout.
+  --------------------------------------------------------------------- */
+  --radius-card: 1.25rem;
+  --radius-control: 0.875rem;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgba(28, 28, 30, 0.04), 0 4px 16px rgba(28, 28, 30, 0.06);
+  --shadow-raised: 0 4px 24px rgba(28, 28, 30, 0.10);
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "tnum" 1; /* tabular numerals for dates/stats */
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: none; /* no rubber-band on mobile shell */
+  }
+
+  /* Touch targets: minimum 44px per Apple HIG, enforced globally on
+     interactive elements so no future component drops below it. */
+  button, a, input, select, textarea {
+    min-height: 2.75rem;
+  }
+
+  /* Visible keyboard focus always — accessibility floor, not optional. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-from-bottom {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.animate-in { animation-fill-mode: both; }
+.fade-in { animation-name: fade-in; }
+.slide-in-from-bottom { animation-name: slide-in-from-bottom; }
+.duration-200 { animation-duration: 200ms; }
+.duration-250 { animation-duration: 250ms; }
